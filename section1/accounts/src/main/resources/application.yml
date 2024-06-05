@@ -17,6 +17,3 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  devtools:
-    restart:
-      enabled: false

@@ -32,8 +32,8 @@ public class AccountServiceImpl implements IAccountService {
     @Override
     public void createAccount(CustomerDto customerDto) {
         Customer customer = CustomerMapper.mapToCustomer(customerDto, new Customer());
-        Optional<Customer> oprionalCustomer = customerRepository.findByMobileNumber(customer.getMobileNumber());
-        if(oprionalCustomer.isPresent()) {
+        Optional<Customer> optionalCustomer = customerRepository.findByMobileNumber(customer.getMobileNumber());
+        if (optionalCustomer.isPresent()) {
             throw new CustomerAlreadyExistsException("Customer already registered with given mobile number " +
                     customerDto.getMobileNumber());
         }
@@ -55,6 +55,29 @@ public class AccountServiceImpl implements IAccountService {
         CustomerDto customerDto = CustomerMapper.mapToCustomerDto(customer, new CustomerDto());
         customerDto.setAccountsDto(AccountMapper.mapToAccountsDto(accounts, new AccountsDto()));
         return customerDto;
+    }
+
+    @Override
+    public boolean updateAccount(CustomerDto customerDto) {
+        boolean isUpdated = false;
+        AccountsDto accountsDto = customerDto.getAccountsDto();
+        if (accountsDto != null) {
+            Accounts accounts = accountRepository.findById(accountsDto.getAccountNumber())
+                    .orElseThrow(() -> new ResourceNotFoundException
+                            ("Account", "AccountNumber", accountsDto.getAccountNumber().toString()));
+
+            AccountMapper.mapToAccounts(accountsDto, accounts);
+            accounts = accountRepository.save(accounts);
+
+            Long customerId = accounts.getCustomerId();
+            Customer customer = customerRepository.findById(customerId)
+                    .orElseThrow(() -> new ResourceNotFoundException
+                            ("Customer", "CustomerId", customerId.toString()));
+            CustomerMapper.mapToCustomer(customerDto, customer);
+            customerRepository.save(customer);
+            isUpdated = true;
+        }
+        return isUpdated;
     }
 
     /**

@@ -12,10 +12,10 @@ public class Accounts extends BaseEntity {
 
     @Id
     @Column(name = "account_number")
-    private long accountNumber;
+    private Long accountNumber;
 
     @Column(name = "customer_id")
-    private long customerId;
+    private Long customerId;
 
     @Column(name = "account_type")
     private String accountType;

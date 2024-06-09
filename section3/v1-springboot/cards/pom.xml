@@ -66,7 +66,7 @@
 				<version>3.3.2</version>
 				<configuration>
 					<to>
-						<image>ivankus197/${project.artifactId}:s2</image>
+						<image>ivankus197/${project.artifactId}:s3</image>
 					</to>
 				</configuration>
 			</plugin>

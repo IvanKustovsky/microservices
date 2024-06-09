@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "qa"
+
+build:
+  version: "2.5"
+
+cards:
+  message: "Welcome to EazyBank cards related QA APIs"
+  contactDetails:
+    name: "Ivan Doe - QA Lead"
+    email: "vanyakus@gmail.com"
+  onCallSupport:
+    - (555)555-1234
+    - (555)523-1345

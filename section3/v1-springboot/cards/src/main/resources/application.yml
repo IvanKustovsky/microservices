@@ -1,5 +1,6 @@
 server:
   port: 9000
+
 spring:
   application:
     name: cards
@@ -16,6 +17,11 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  config:
+    import:
+      - "application_qa.yml"
+      - "application_prod.yml"
+
 
 build:
   version: "1.0"

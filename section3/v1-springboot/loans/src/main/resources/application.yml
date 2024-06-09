@@ -17,12 +17,18 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  config:
+    import:
+      - "application_qa.yml"
+      - "application_prod.yml"
+  profiles:
+    active: "qa"
 
 build:
-  version: "1.0"
+  version: "3.2"
 
 loans:
-  message: "Welcome to EazyBank accounts related local APIs"
+  message: "Welcome to EazyBank loans related local APIs"
   contactDetails:
     name: "Ivan Doe - Developer"
     email: "vanyakus@gmail.com"

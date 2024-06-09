@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+build:
+  version: "1.0"
+
+accounts:
+  message: "Welcome to EazyBank accounts related PROD APIs"
+  contactDetails:
+    name: "Jamie Harden - Product Owner"
+    email: "jamieharden@gmail.com"
+  onCallSupport:
+    - (666)543-4321
+    - (666)897-6654

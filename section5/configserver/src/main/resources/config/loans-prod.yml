@@ -1,0 +1,11 @@
+build:
+  version: "1.2"
+
+loans:
+  message: "Welcome to EazyBank loans related PROD APIs"
+  contactDetails:
+    name: "Jamie Harden - Product Owner"
+    email: "jamieharden@gmail.com"
+  onCallSupport:
+    - (666)543-4321
+    - (666)897-6654

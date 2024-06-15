@@ -43,6 +43,10 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
 
 
 		<dependency>
@@ -93,7 +97,7 @@
 				<version>3.3.2</version>
 				<configuration>
 					<to>
-						<image>ivankus197/${project.artifactId}:s3</image>
+						<image>ivankus197/${project.artifactId}:s5</image>
 					</to>
 				</configuration>
 			</plugin>

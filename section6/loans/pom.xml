@@ -93,7 +93,7 @@
 				<version>3.3.2</version>
 				<configuration>
 					<to>
-						<image>ivankus197/${project.artifactId}:s5</image>
+						<image>ivankus197/${project.artifactId}:s6</image>
 					</to>
 				</configuration>
 			</plugin>

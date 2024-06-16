@@ -52,3 +52,9 @@ info:
     name: "accounts"
     description: "EazyBank Accounts Application"
     version: "1.0.0"
+
+logging:
+  level:
+    com:
+      example:
+        accounts: DEBUG

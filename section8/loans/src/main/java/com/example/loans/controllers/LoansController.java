@@ -57,7 +57,8 @@ public class LoansController {
     })
     @PostMapping("/create")
     public ResponseEntity<ResponseDto> addLoan(@RequestParam
-                                               @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
+                                               @Pattern(regexp = "(^$|[0-9]{10})",
+                                                       message = "Mobile number must be 10 digits")
                                                String mobileNumber) {
         loansService.createLoan(mobileNumber);
         return ResponseEntity
@@ -79,12 +80,13 @@ public class LoansController {
                     )),
     })
     @GetMapping("/fetch")
-    public ResponseEntity<LoansDto> fetchLoanDetails(@RequestHeader("eazybank-correlation-id") String correlationId,
-                                                     @RequestParam
-                                                     @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
+    public ResponseEntity<LoansDto> fetchLoanDetails(@RequestParam
+                                                     @Pattern(regexp = "(^$|[0-9]{10})",
+                                                             message = "Mobile number must be 10 digits")
                                                      String mobileNumber) {
-        log.debug("eazyBank-correlation-id found: {}", correlationId);
+        log.debug("fetchLoanDetails method start");
         LoansDto loansDto = loansService.fetchLoan(mobileNumber);
+        log.debug("fetchLoanDetails method end");
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(loansDto);
@@ -140,7 +142,8 @@ public class LoansController {
     })
     @DeleteMapping("/delete")
     public ResponseEntity<ResponseDto> deleteLoanDetails(@RequestParam
-                                                         @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
+                                                         @Pattern(regexp = "(^$|[0-9]{10})",
+                                                                 message = "Mobile number must be 10 digits")
                                                          String mobileNumber) {
         boolean isDeleted = loansService.deleteLoan(mobileNumber);
         if (isDeleted) {

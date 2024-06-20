@@ -68,7 +68,8 @@ public class CardsController {
     )
     @PostMapping("/create")
     public ResponseEntity<ResponseDto> createCard(@RequestParam
-                                                  @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
+                                                  @Pattern(regexp = "(^$|[0-9]{10})",
+                                                          message = "Mobile number must be 10 digits")
                                                   String mobileNumber) {
         iCardsService.createCard(mobileNumber);
         return ResponseEntity
@@ -94,13 +95,16 @@ public class CardsController {
             )
     })
     @GetMapping("/fetch")
-    public ResponseEntity<CardsDto> fetchCardDetails(@RequestHeader("eazybank-correlation-id") String correlationId,
-                                                     @RequestParam
-                                                     @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
+    public ResponseEntity<CardsDto> fetchCardDetails(@RequestParam
+                                                     @Pattern(regexp = "(^$|[0-9]{10})",
+                                                             message = "Mobile number must be 10 digits")
                                                      String mobileNumber) {
-        log.debug("eazyBank-correlation-id found: {}", correlationId);
+        log.debug("fetchCardDetails method start");
         CardsDto cardsDto = iCardsService.fetchCard(mobileNumber);
-        return ResponseEntity.status(HttpStatus.OK).body(cardsDto);
+        log.debug("fetchCardDetails method end");
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(cardsDto);
     }
 
     @Operation(
@@ -161,7 +165,8 @@ public class CardsController {
     })
     @DeleteMapping("/delete")
     public ResponseEntity<ResponseDto> deleteCardDetails(@RequestParam
-                                                         @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")
+                                                         @Pattern(regexp = "(^$|[0-9]{10})",
+                                                                 message = "Mobile number must be 10 digits")
                                                          String mobileNumber) {
         boolean isDeleted = iCardsService.deleteCard(mobileNumber);
         if (isDeleted) {

@@ -18,6 +18,11 @@ spring:
       host: localhost
       port: 6389
       timeout: 1s
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: "http://localhost:6580/realms/master/protocol/openid-connect/certs"
 
 management:
   endpoints:

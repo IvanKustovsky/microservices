@@ -1,6 +1,5 @@
 server:
   port: 8080
-
 spring:
   application:
     name: "accounts"
@@ -25,21 +24,20 @@ spring:
     openfeign:
       circuitbreaker:
         enabled: true
+    function:
+      definition: updateCommunication
     stream:
       bindings:
-        sendCommunication-out-0:
-          destination: send-communication
         updateCommunication-in-0:
           destination: communication-sent
           group: ${spring.application.name}
-    function:
-      definition: updateCommunication
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-    connection-timeout: 10s
+        sendCommunication-out-0:
+          destination: send-communication
+      kafka:
+        binder:
+          brokers:
+            - localhost:9092
+
 
 management:
   endpoints:

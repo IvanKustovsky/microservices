@@ -39,23 +39,21 @@ public class LoansServiceImpl implements ILoansService {
     @Override
     public LoansDto fetchLoan(String mobileNumber) {
         Loans loan = loansRepository.findByMobileNumber(mobileNumber)
-                .orElseThrow(() -> new ResourceNotFoundException("Loan", "MobileNumber", mobileNumber));
+                .orElseThrow(() -> new ResourceNotFoundException("Loan", "mobileNumber", mobileNumber));
         return LoansMapper.mapToLoansDto(loan, new LoansDto());
     }
 
     /**
-
      * @param loansDto - LoansDto Object
      * @return boolean indicating if the update of loan details is successful or not
      */
     @Override
     public boolean updateLoan(LoansDto loansDto) {
         var optionalLoans = loansRepository.findByLoanNumber(loansDto.getLoanNumber())
-                .orElseThrow(() -> new ResourceNotFoundException("Loans", "LoanNumber", loansDto.getLoanNumber()));
+                .orElseThrow(() -> new ResourceNotFoundException("Loan", "loanNumber", loansDto.getLoanNumber()));
         LoansMapper.mapToLoans(loansDto, optionalLoans);
         loansRepository.save(optionalLoans);
         return true;
-
     }
 
     /**
@@ -65,7 +63,7 @@ public class LoansServiceImpl implements ILoansService {
     @Override
     public boolean deleteLoan(String mobileNumber) {
         var optionalLoans = loansRepository.findByMobileNumber(mobileNumber)
-                .orElseThrow(() -> new ResourceNotFoundException("Loans", "MobileNumber", mobileNumber));
+                .orElseThrow(() -> new ResourceNotFoundException("Loan", "mobileNumber", mobileNumber));
         loansRepository.deleteById(optionalLoans.getLoanId());
         return true;
     }
